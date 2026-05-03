@@ -1,0 +1,26 @@
+[
+  {
+    "id": 101,
+    "nombre": "Juan Pérez",
+    "semestre": 1,
+    "matriculado": true,
+    "creditosPermitidos": 16,
+    "carrera": "Ingeniería de Sistemas"
+  },
+  {
+    "id": 102,
+    "nombre": "Andres Solano",
+    "semestre": 1,
+    "matriculado": true,
+    "creditosPermitidos": 20,
+    "carrera": "Ingeniería de Sistemas"
+  },
+  {
+    "id": 103,
+    "nombre": "Benjamin Cantillo",
+    "semestre": 2,
+    "matriculado": false,
+    "creditosPermitidos": 18,
+    "carrera": "Ingeniería de Sistemas"
+  }
+]

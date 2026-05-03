@@ -1,0 +1,119 @@
+:root {
+  --bg-dark: #0a0e1a;
+  --bg-card: #121826;
+  --bg-card-hover: #1a2235;
+  --primary: #6c63ff;
+  --success: #00d26a;
+  --danger: #ff4757;
+  --text-primary: #e4e6eb;
+  --text-secondary: #a0a3bd;
+  --border: #1e2436;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.card-dark {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.card-dark:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, #5a52d5 100%) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+}
+
+.btn-danger {
+  background: var(--danger) !important;
+  border-radius: 8px !important;
+}
+
+.btn-success {
+  background: var(--success) !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+}
+
+.form-control {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-primary) !important;
+  border-radius: 10px !important;
+  padding: 12px !important;
+}
+
+.form-control:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2) !important;
+}
+
+.form-control::placeholder {
+  color: var(--text-secondary) !important;
+}
+
+.header {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+}
+
+.badge-success {
+  background: var(--success);
+  color: black;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.badge-warning {
+  background: var(--warning);
+  color: black;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}

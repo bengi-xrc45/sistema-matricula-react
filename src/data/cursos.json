@@ -1,0 +1,21 @@
+[
+  { "id": 1, "nombre": "Cálculo Diferencial", "codigo": "CAD101", "creditos": 4, "semestre": 1, "limiteCupos": 30, "matriculados": 25 },
+  { "id": 2, "nombre": "Deporte y cultura", "codigo": "DPC201", "creditos": 1, "semestre": 1, "limiteCupos": 40, "matriculados": 18 },
+  { "id": 3, "nombre": "Física mecánica", "codigo": "FIM102", "creditos": 3, "semestre": 1, "limiteCupos": 40, "matriculados": 30 },
+  { "id": 4, "nombre": "Tecnologia Web", "codigo": "TCW305", "creditos": 2, "semestre": 1, "limiteCupos": 25, "matriculados": 20 },
+  { "id": 5, "nombre": "Algoritmia y Programación", "codigo": "ALP301", "creditos": 4, "semestre": 1, "limiteCupos": 35, "matriculados": 20 },
+  { "id": 6, "nombre": "Laboratorio Fisica Mecanica", "codigo": "LFM107", "creditos": 1, "semestre": 1, "limiteCupos": 25, "matriculados": 20 },
+  { "id": 7, "nombre": "Introducción a la Ingeniería", "codigo": "IGN305", "creditos": 1, "semestre": 1, "limiteCupos": 50, "matriculados": 20 },
+  { "id": 8, "nombre": "Algebra lineal", "codigo": "AGL303", "creditos": 4, "semestre": 2, "limiteCupos": 25, "matriculados": 20 },
+  { "id": 90, "nombre": "Cálculo Integral", "codigo": "CAI202", "creditos": 4, "semestre": 2, "limiteCupos": 25, "matriculados": 25 },
+  { "id": 10, "nombre": "Estructuras discretas", "codigo": "ESD201", "creditos": 4, "semestre": 2, "limiteCupos": 25, "matriculados": 20 },
+  { "id": 11, "nombre": "Física Eléctrica", "codigo": "FSE307", "creditos": 4, "semestre": 2, "limiteCupos": 25, "matriculados": 20 },
+  { "id": 12, "nombre": "Lab. Programacion Orientada a Objetos", "codigo": "LPO109", "creditos": 4, "semestre": 2, "limiteCupos": 25, "matriculados": 20 },
+  { "id": 13, "nombre": "Lenguaje y Comunicación", "codigo": "LEC104", "creditos": 4, "semestre": 2, "limiteCupos": 25, "matriculados": 20 },
+  { "id": 14, "nombre": "Programación Orientada a Objetos", "codigo": "POO304", "creditos": 4, "semestre": 2, "limiteCupos": 25, "matriculados": 20 },
+  { "id": 15, "nombre": "Cálculo Vectorial", "codigo": "CAV101", "creditos": 4, "semestre": 3, "limiteCupos": 25, "matriculados": 20 },
+  { "id": 16, "nombre": "Constitucion y Democracia", "codigo": "COD203", "creditos": 4, "semestre": 3, "limiteCupos": 25, "matriculados": 20 },
+  { "id": 17, "nombre": "Estructuras de Datos", "codigo": "ESD102", "creditos": 4, "semestre": 3, "limiteCupos": 25, "matriculados": 20 },
+  { "id": 18, "nombre": "Bases de Datos", "codigo": "BD202", "creditos": 3, "semestre": 3, "limiteCupos": 25, "matriculados": 17 }
+
+]
