@@ -13,27 +13,48 @@ function App() {
   const [seleccionados, setSeleccionados] = useState([]);
   const [cursosGuardados, setCursosGuardados] = useState([]);
   const [msg, setMsg] = useState("");
-  const [cursos, setCursos] = useState(cursosData);
+  const [cursos, setCursos] = useState(() => {
+    return JSON.parse(JSON.stringify(cursosData));
+  });
 
   useEffect(() => {
     if (estudiante) {
-      const data = localStorage.getItem(`matricula_${estudiante.id}`);
-      if (data) {
-        const parsed = JSON.parse(data);
-        setCursosGuardados(parsed.cursos || []);
-        setSeleccionados([]);
-
-        const nombresCursos = parsed.cursos.map((c) => c.nombre).join(", ");
-        setMsg(
-          `Bienvenido. Ya tienes ${parsed.cursos.length} cursos: ${nombresCursos}`,
-        );
-        setTimeout(() => setMsg(""), 4000);
-      } else {
-        setCursosGuardados([]);
-        setSeleccionados([]);
-      }
+      cargarCuposDesdeLocalStorage();
     }
   }, [estudiante]);
+
+  const cargarCuposDesdeLocalStorage = () => {
+    const copiaCursos = JSON.parse(JSON.stringify(cursosData));
+    const todasLasMatriculas = [];
+
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith("matricula_")) {
+        const data = JSON.parse(localStorage.getItem(key));
+        if (data && data.cursos) {
+          todasLasMatriculas.push(...data.cursos);
+        }
+      }
+    }
+
+    todasLasMatriculas.forEach(cursoMatriculado => {
+      const cursoEncontrado = copiaCursos.find(c => c.id === cursoMatriculado.id);
+      if (cursoEncontrado) {
+        cursoEncontrado.matriculados += 1;
+      }
+    });
+
+    setCursos(copiaCursos);
+
+    const dataActual = localStorage.getItem(`matricula_${estudiante.id}`);
+    if (dataActual) {
+      const parsed = JSON.parse(dataActual);
+      setCursosGuardados(parsed.cursos || []);
+    } else {
+      setCursosGuardados([]);
+    }
+    setSeleccionados([]);
+  };
 
   if (!estudiante) {
     return <Login onLogin={setEstudiante} />;
@@ -58,11 +79,12 @@ function App() {
       </div>
     );
   }
+
   const cursosFiltrados = cursos.filter(
     (c) =>
       c.semestre === estudiante.semestre &&
       !cursosGuardados.find((g) => g.id === c.id) &&
-      !seleccionados.find((s) => s.id === c.id),
+      !seleccionados.find((s) => s.id === c.id)
   );
 
   const total = seleccionados.reduce((a, c) => a + c.creditos, 0);
@@ -93,9 +115,7 @@ function App() {
       total + curso.creditos + totalGuardado >
       estudiante.creditosPermitidos
     ) {
-      setMsg(
-        `Excedes el límite de ${estudiante.creditosPermitidos} créditos`,
-      );
+      setMsg(`Excedes el límite de ${estudiante.creditosPermitidos} créditos`);
       setTimeout(() => setMsg(""), 2000);
       return;
     }
@@ -107,19 +127,19 @@ function App() {
     }
 
     setSeleccionados([...seleccionados, curso]);
-    setMsg(`✅ ${curso.nombre} agregado`);
+    setMsg(`✅${curso.nombre} agregado`);
     setTimeout(() => setMsg(""), 1500);
   };
 
   const eliminar = (id) => {
     const curso = seleccionados.find((c) => c.id === id);
     setSeleccionados(seleccionados.filter((c) => c.id !== id));
-    setMsg(`❌ ${curso.nombre} eliminado`);
+    setMsg(`❌${curso.nombre} eliminado`);
     setTimeout(() => setMsg(""), 1500);
   };
 
   const guardarMatricula = () => {
-    if (seleccionados.length === 0 && cursosGuardados.length === 0) {
+    if (seleccionados.length === 0) {
       setMsg("No hay cursos seleccionados para guardar");
       setTimeout(() => setMsg(""), 2000);
       return;
@@ -135,11 +155,13 @@ function App() {
         cursos: todosLosCursos,
         fecha: new Date().toISOString(),
         totalCreditos: todosLosCursos.reduce((a, c) => a + c.creditos, 0),
-      }),
+      })
     );
 
     setCursosGuardados(todosLosCursos);
     setSeleccionados([]);
+
+    cargarCuposDesdeLocalStorage();
 
     setMsg(`Matrícula guardada. Total cursos: ${todosLosCursos.length}`);
     setTimeout(() => setMsg(""), 2500);
@@ -149,14 +171,15 @@ function App() {
     setEstudiante(null);
     setSeleccionados([]);
     setCursosGuardados([]);
+    setMsg("");
   };
 
   return (
     <div className="container py-4">
       <div className="header d-flex justify-content-between align-items-center">
         <div>
-          <h3 className="mb-2">📚 Matrícula Académica</h3>
-          <h4 className="mb-0">🎓 {estudiante.nombre}</h4>
+          <h3 className="mb-2">Matrícula Académica</h3>
+          <h4 className="mb-0">{estudiante.nombre}</h4>
           <p className="mb-1">
             Estado: <span className="fw-bold text-success">Matriculado</span>
           </p>
@@ -164,11 +187,13 @@ function App() {
             {estudiante.carrera || "Ingeniería de Sistemas"} | Semestre:{" "}
             {estudiante.semestre}° | ID: {estudiante.id}
           </small>
+
           {cursosGuardados.length > 0 && (
             <p className="mt-2 mb-0 text-primary">
               Tienes {cursosGuardados.length} cursos matriculados
             </p>
           )}
+
           {cursosGuardados.length > 0 && (
             <div className="mt-2 p-2">
               <div className="d-flex flex-wrap gap-1 mt-1">
@@ -176,7 +201,7 @@ function App() {
                   <span
                     key={curso.id}
                     className="badge bg-success"
-                    style={{ fontSize: "11px" }}
+                    style={{ fontSize: "12px" }}
                   >
                     {curso.nombre}
                   </span>
@@ -185,15 +210,18 @@ function App() {
             </div>
           )}
         </div>
-        <button className="btn btn-outline-light btn-sm" onClick={cerrarSesion}>
+
+        <button
+          className="btn btn-outline-danger btn-sm"
+          onClick={cerrarSesion}
+        >
           Cerrar sesión
         </button>
       </div>
 
       <Resumen
         total={total + totalGuardado}
-        maximo={estudiante.creditosPermitidos}
-      />
+        maximo={estudiante.creditosPermitidos}/>
 
       <div className="row mt-4">
         <div className="col-md-8">
@@ -201,14 +229,13 @@ function App() {
             cursos={cursosFiltrados}
             onAgregar={agregar}
             validar={validar}
-            seleccionados={seleccionados}
-          />
+            seleccionados={seleccionados}/>
         </div>
+
         <div className="col-md-4">
           <CursosSeleccionados
             seleccionados={seleccionados}
-            onEliminar={eliminar}
-          />
+            onEliminar={eliminar}/>
         </div>
       </div>
 
@@ -217,7 +244,6 @@ function App() {
         onClick={guardarMatricula}
         disabled={seleccionados.length === 0}
       >
-        💾{" "}
         {seleccionados.length === 0
           ? "Selecciona cursos nuevos"
           : `Guardar ${seleccionados.length} curso(s) nuevo(s)`}

@@ -1,16 +1,62 @@
-# React + Vite
+# Sistema de Matriculación Académica
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web desarrollada en React que permite a un estudiante
+seleccionar y matricular cursos según su semestre académico.
 
-Currently, two official plugins are available:
+Incluye validaciones de créditos, disponibilidad de cupos
+y persistencia de datos en localStorage.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Demo
 
-## React Compiler
+https://sistema-matricula-react.vercel.app/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologías
 
-## Expanding the ESLint configuration
+- React
+- Bootstrap
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Instalación y ejecución
+
+1. Clonar el repositorio:
+
+2. Instalar dependencias:
+
+npm install
+npm install bootstrap
+
+3. Ejecutar el proyecto:
+
+npm run dev
+
+4. Abrir en navegador:
+
+http://localhost:5173
+
+
+## Uso
+
+1. Ingresar con un ID de estudiante:
+   - 101
+   - 102
+   - 103 (No matriculado por Default)
+
+2. Seleccionar cursos disponibles según el semestre.
+
+3. Confirmar la matrícula.
+
+4. Visualizar los cursos seleccionados.
+
+## D. técnicas
+
+- Los datos se simulan mediante archivos JSON según requerimiento (cursos.json, estudiantes.json).
+- Se implementó filtrado de cursos por semestre del estudiante.
+- Ver cursos seleccionados 
+- Ver total de créditos seleccionados
+- No dejar seleccionar más créditos de los permitidos
+- No dejar seleccionar cursos sin cupos
+- No dejar seleccionar el mismo curso dos veces
+- Se utilizó localStorage para persistir la matrícula.
+- Iniciar sesión con ID
+- Guardar matrícula en el navegador (localStorage)
+- Cerrar sesión
+

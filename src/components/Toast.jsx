@@ -5,8 +5,7 @@ function Toast({ mensaje }) {
   let bgColor = "#6c63ff";
   if (mensaje.includes("✅")) bgColor = "#00d26a";
   if (mensaje.includes("❌")) bgColor = "#ff4757";
-  if (mensaje.includes("⚠️")) bgColor = "#ffa502";
-
+  
   return (
     <div className="position-fixed bottom-0 end-0 p-3" style={{ zIndex: 1050 }}>
       <div 
